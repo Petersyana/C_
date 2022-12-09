@@ -4,32 +4,31 @@
 Console.Clear();
 
 // метод создает массив
-
-int [] GetArray(int size, int minNum, int maxNum)
+double [] GetArray(int size)
 {
 Console.Write("Заданный массив   ");
 
-    int [] res = new int[size];
+    double [] res = new double[size];
     for (int i = 0; i < size; i++)
     {
-        res[i] = new Random().Next(minNum, maxNum);
+        res[i] = new Random().NextDouble();
         Console.Write($"{res[i]} ");
     }    
       return res;
       Console.WriteLine();
  }
 
-   int[] res = GetArray(9,10,30); // вызов метода создания массива
+   double[] res = GetArray(9); // вызов метода создания массива
 
    Console.WriteLine(); // переход на другую строку
 
 // метод считает разницу между максимальным и минимальным элементом
 
 
-void DiffArray(int[] array)
+void DiffArray(double[] array)
  {
-    int maxNum = array[0];
-    int minNum = array[1];
+    double maxNum = array[0];
+    double minNum = array[0];
     
     for (int i = 0; i < array.Length; i++) 
     {
