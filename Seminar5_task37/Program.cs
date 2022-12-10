@@ -12,7 +12,7 @@ Console.Write("Заданный массив   ");
     int [] res = new int[size];
     for (int i = 0; i < size; i++)
     {
-        res[i] = new Random().Next(minNum, maxNum);
+        res[i] = new Random().Next(minNum, maxNum+1);// +1,чтобы последнее число вошло в массив
         Console.Write($"{res[i]} ");
     }    
       return res;
