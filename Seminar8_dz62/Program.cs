@@ -19,7 +19,7 @@ y = -1;
 int d_column = 1; //-1 0 1
 int d_row = 0; // -1 0 1
 
-while(num < Math.Pow(n,2))
+/* int spiral(int x, int y, int d_row, int d_column)
 {
     if ((0 <= x+d_row & x+d_row < n) & (0 <= y+d_column & y+d_column < n) & (array[x+d_row, y+d_column] == 0))
     {     
@@ -29,28 +29,54 @@ while(num < Math.Pow(n,2))
     array[x,y] = num;
     num +=1;
     }
+   return (Convert.ToInt32(x), Convert.ToInt32(y), Convert.ToInt32(d_row), Convert.ToInt32(d_column));
+) */
+
+while(num < Math.Pow(n,2))
+{
+    //spiral(x, y, d_row, d_column);
+    if ((0 <= x+d_row && x+d_row < n) && 
+    (0 <= y+d_column && y+d_column < n) && 
+    (array[x+d_row, y+d_column] == 0))
+    {     
+    x += d_row;
+    y += d_column;
+    Console.WriteLine($"{x},{y}");
+    array[x,y] = num;
+    num +=1; 
+    }
+    else
+    {
     if (d_column == 1)
         {
             d_column = 0;
             d_row = 1;
             Console.WriteLine("first");
-        }
-    }
-       /*  if(d_row == 1)
+        //}
+else
+        if(d_row == 1)
            {
            d_column = -1;
             d_row = 0; 
-            }
-              if(d_column == -1)
+           //}
+    else
+            if(d_column == -1)
                 {
                     d_column = 0;
                     d_row = -1;
-                }
-            if(d_row == -1)
+              //  }
+         else
+                if(d_row == -1)
                 {
                 d_column = 1;
                     d_row = 0; 
-                } */
+                } 
+                }
+           }
+        }
+     }
+}
+            
             
           
 
