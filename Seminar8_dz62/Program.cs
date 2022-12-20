@@ -1,106 +1,71 @@
 ﻿// заполнение массива по спирали
 
-int n = 4;
-int x = 0; 
-int y = 0;
+    Console.WriteLine("Введите через Enter размер матрицы N и M");
+    int N = int.Parse(Console.ReadLine());
+    int M = int.Parse(Console.ReadLine());
 
-int[,] array = new int[n,n]; //создаем массив из 0
-// for (x = 0; x < n; x++)
-// {
-//     for (y = 0; y < n; y++)
-//     {
-//         array[x,y] = 0;
-//     }
-// }
+    int [,] array = new int[N,M];
 
-void PrintArray(int[,] inArray) // вывод на печать
+    int num = 1; // значения в массиве
+    int i = 0;
+    int j = 0;
+    int Ibeg = 0; // точки поворота
+    int Ifin = 0;
+    int Jbeg = 0;
+    int Jfin = 0;
+
+    array[i,j] = num;
+ 
+    
+        while (num <= N * M)
+        {
+        array[i,j] = num;
+    
+        if (i == Ibeg && j < M - Jfin - 1)
+        // Если у нас верхняя сторона прямоугольника 
+        // и мы не достигла правой стороны, то двигаемся вправо: ++j
+            ++j; 
+        else if (j == M - Jfin - 1 && i < N - Ifin - 1)
+        // Если мы на правой стороне прямоугольника 
+        // и не достигли нижней стороны, то двигаемся вниз: ++i
+            ++i;
+        else if (i == N - Ifin - 1 && j > Jbeg)
+        // Если мы на нижней стороне прямоугольника 
+        // и не достигли левой стороны, то двигаемся влево: --j
+            --j;
+        else
+        // Иначе двигаемся вверх: --i
+            --i;
+
+        // В конце же каждого прохода проверяем, 
+        // завершился ли прямоугольник и стоит ли начинать прочерчивать новый - меньший:
+        // Если мы находимся на второй строке
+        // Если мы находимся на первом столбце
+        // И, в случае, если чертим не прямоугльник, а вертикальную линию, если 
+        // первая строка не равна последней. (этот пункт самый сложный во всем 
+        // алгоритме. Его я достиг путем экспериментов)
+        // Тогда увеличиваем отступы от краев первого прямоугольника:
+        
+        if ((i == Ibeg + 1) && (j == Jbeg) && (Jbeg != M - Jfin - 1))
+        {
+            ++Ibeg;
+            ++Ifin;
+            ++Jbeg;
+            ++Jfin;
+        }
+        ++num;
+    }
+    
+  void PrintArray(int[,] inArray) // вывод на печать
 {
     for (int i = 0; i < inArray.GetLength(0); i++)
     {
         for (int j = 0; j < inArray.GetLength(1); j++)
         {
-            Console.Write($"{inArray[i,j]} ");
+            Console.Write($" {inArray[i,j]} ");
         }
         Console.WriteLine();
     }
 }
-
-//PrintArray(array);
-
-int num = 1;
-int n1 = 1;
-x = 0; 
-y = 1;
-int d_column = 1; //-1 0 1
-int d_row = 0; // -1 0 1
-
-
-// while(n1 < n*2)
-// {
-//     if ((x <= n) && (y <= n))
-//     {
-//     array[x,y] = num;
-//     Console.Write($" {num}");
-//     x = x + d_row;
-//     y = y + d_column;
-//     num = num+1;
-    
-//     }
-// //}
-
-
-
-
-
-
-
-
-
-
-
-    if ((0 <= x+d_row && x+d_row < n) && 
-    (0 <= y+d_column && y+d_column < n) && 
-    (array[x+d_row, y+d_column] == 0))
-    {     
-        x += d_row;
-        y += d_column;
-        Console.Write($" {num}");
-        array[x,y] = num;
-        num +=1; 
-    }
-
-    //  if (d_column == 1)
-    //     {
-    //         d_column = 0;
-    //         d_row = 1;
-    //         Console.Write($" {num}");
-    //      }
-// }
-// else
-//         if(d_row == 1)
-//            {
-//            d_column = -1;
-//             d_row = 0; 
-//            //}
-//     else
-//             if(d_column == -1)
-//                 {
-//                     d_column = 0;
-//                     d_row = -1;
-//               //  }
-//          else
-//                 if(d_row == -1)
-//                 {
-//                 d_column = 1;
-//                     d_row = 0; 
-//                 } 
-//                 }
-//            }
-//         }
-//      }
-// }
-            
-            
-          
 
 PrintArray(array);
